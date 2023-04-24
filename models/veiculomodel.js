@@ -3,8 +3,11 @@ const Schema = mongoose.Schema;
 
 const VeiculoSchema = new Schema({
   _id: Number,
-  placaCarro : String,
-  ModeloCarro: String
+  placaCarro : { 
+    type: String, 
+    required : [true, "A placa do carro é obrigatória!"]
+  },
+  modeloCarro: String
 }, { 
   versionKey: false 
 });

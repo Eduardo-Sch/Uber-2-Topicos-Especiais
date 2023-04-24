@@ -29,7 +29,7 @@ class VeiculoController {
   async excluir(req, res){
     const id = req.params.id;
     await VeiculoModel.findOneAndDelete({'_id': id});
-    res.send("DCN excluída!");
+    res.send("Veiculo excluído!");
   }
 }
 

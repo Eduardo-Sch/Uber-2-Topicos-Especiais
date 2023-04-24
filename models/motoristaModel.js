@@ -3,9 +3,18 @@ const Schema = mongoose.Schema;
 
 const MotoristaSchema = new Schema({
   _id: Number,
-  nome : String,
-  telefone : String,
-  email : String,
+  nome : { 
+    type: String, 
+    required : [true, "nome é obrigatório!"]
+  },
+  telefone : { 
+    type: String, 
+    required : [true, "telefone é obrigatório!"]
+  },
+  email : { 
+    type: String, 
+    required : [true, "email é obrigatório!"]
+  },
   avaliacao: {
     type: Number,
     min: 0,

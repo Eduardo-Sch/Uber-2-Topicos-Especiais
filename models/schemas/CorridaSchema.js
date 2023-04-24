@@ -9,11 +9,11 @@ const CorridaSchema = new Schema({
   },
   pontoPartida : { 
       type: String, 
-      required : [true, "Nome é obrigatório!"]
+      required : [true, "Ponto de partida é obrigatório!"]
   },
   pontoChegada : { 
     type: String, 
-    required : [true, "Nome é obrigatório!"]
+    required : [true, "Ponto de Pardita é obrigatório!"]
 },
   cliente : { type: Number, ref: 'cliente' },
   motorista : { type: Number, ref: 'motorista' },

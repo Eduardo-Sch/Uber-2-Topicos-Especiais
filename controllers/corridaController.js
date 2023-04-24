@@ -7,7 +7,14 @@ class CorridaController {
   async listar(req, res){ 
     const resultado = await CorridaModel.find({})
       .populate('motorista')
-      .populate('cliente');
+      .populate('cliente')
+      .populate({
+        path: 'motorista',
+        populate: {
+          path: 'veiculo',
+          model: 'veiculo'
+        }
+      })
     res.json(resultado);
   }
 
@@ -22,12 +29,12 @@ class CorridaController {
     const idDoMotorista = corrida.motorista;
     const idsDoCliente = corrida.cliente;
 
-    //Vincula a motorista ao corrida
+    //Vincula o motorista a corrida
     if (idDoMotorista != null && idDoMotorista != 'undefined' && idDoMotorista != ''){
       corrida.motorista = await MotoristaModel.findOne({'_id': idDoMotorista});
     }
 
-    //Vincula os cliente de ensino ao corrida
+    //Vincula o cliente a corrida
     if (idsDoCliente != null && idsDoCliente != 'undefined' 
         && idsDoCliente != '' && idsDoCliente.length > 0){
       corrida.cliente = await ClienteModel.find({'_id': {$in: idsDoCliente}});
@@ -42,7 +49,7 @@ class CorridaController {
     const corrida = req.body;
     const idDoMotorista = corrida.motorista;
 
-    //Atualiza a motorista no corrida
+    //Atualiza o motorista na corrida
     if (idDoMotorista != null && idDoMotorista != 'undefined' && idDoMotorista != ''){
         corrida.motorista = await MotoristaModel.findOne({'_id': idDoMotorista})
     }
@@ -51,7 +58,8 @@ class CorridaController {
     res.json(resultado);
     
   }
-
+  
+  //Atualiza o cliente na corrida
   async atualizarCliente(req, res){
     const idDoCorrida = req.params.id;
     const idsDoCliente = req.body;

@@ -19,7 +19,7 @@ class MotoristaController {
     const motorista = req.body;
     const idDoVeiculo = motorista.veiculo;
 
-     //Vincula a motorista ao corrida
+     //Vincula o veiculo ao motorista
      if (idDoVeiculo != null && idDoVeiculo != 'undefined' && idDoVeiculo != ''){
       motorista.veiculo = await VeiculoModel.findOne({'_id': idDoVeiculo});
     }
@@ -38,7 +38,7 @@ class MotoristaController {
   async excluir(req, res){
     const id = req.params.id;
     await MotoristaModel.findOneAndDelete({'_id': id});
-    res.send("DCN excluída!");
+    res.send("Motorista excluída!");
   }
 }
 

@@ -29,7 +29,7 @@ class ClienteController {
   async excluir(req, res){
     const id = req.params.id;
     await ClienteModel.findOneAndDelete({'_id': id});
-    res.send("Conteúdo excluído!");
+    res.send("Cliente excluído!");
   }
 }
 
