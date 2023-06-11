@@ -5,15 +5,12 @@ const ClienteSchema = new Schema({
   _id: Number,
   nome : { 
     type: String, 
-    required : [true, "nome é obrigatório!"]
   },
   telefone : { 
     type: String, 
-    required : [true, "telefone é obrigatório!"]
   },
   email : { 
     type: String, 
-    required : [true, "email é obrigatório!"]
   },
   avaliacao: {
     type: Number,

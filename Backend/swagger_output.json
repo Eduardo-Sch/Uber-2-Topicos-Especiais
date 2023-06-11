@@ -1,0 +1,14 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Matrix APIs",
+    "description": "APIs do projeto Matrix",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3005",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {}
+}
