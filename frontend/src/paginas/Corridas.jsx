@@ -142,48 +142,62 @@ function Corridas() {
   function getFormulario() {
     return (
       <form>
-        <label>Ponto de partida</label>
-        <input
-          type="text"
-          name="pontoPartida"
-          value={corrida?.pontoPartida ?? ''}
-          onChange={(e) => {
-            alterarCorrida(e.target.name, e.target.value, corrida?._id);
-          }}
-        />
+        <div className="form-group">
+          <label>Ponto de partida</label>
+          <input
+            type="text"
+            name="pontoPartida"
+            className="form-control"
+            value={corrida?.pontoPartida ?? ''}
+            onChange={(e) => {
+              alterarCorrida(e.target.name, e.target.value, corrida?._id);
+            }}
+          />
+        </div>
 
-        <label>Ponto de chegada</label>
-        <input
-          type="text"
-          name="pontoChegada"
-          value={corrida?.pontoChegada ?? ''}
-          onChange={(e) => {
-            alterarCorrida(e.target.name, e.target.value, corrida?._id);
-          }}
-        />
+        <div className="form-group">
+          <label>Ponto de chegada</label>
+          <input
+            type="text"
+            name="pontoChegada"
+            className="form-control"
+            value={corrida?.pontoChegada ?? ''}
+            onChange={(e) => {
+              alterarCorrida(e.target.name, e.target.value, corrida?._id);
+            }}
+          />
+        </div>
 
-        <label>Clientes</label>
-        {getSelectClientes()}
+        <div className="form-group">
+          <label>Clientes</label>
+          {getSelectClientes()}
+        </div>
 
-        <label>Motoristas</label>
-        {getSelectMotoristas()}
+        <div className="form-group">
+          <label>Motoristas</label>
+          {getSelectMotoristas()}
+        </div>
 
-        <button
-          type="button"
-          onClick={() => {
-            salvarCorrida();
-          }}
-        >
-          Salvar
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            reiniciarEstadoDosObjetos();
-          }}
-        >
-          Cancelar
-        </button>
+        <div className="button-group">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              salvarCorrida();
+            }}
+          >
+            Salvar
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              reiniciarEstadoDosObjetos();
+            }}
+          >
+            Cancelar
+          </button>
+        </div>
       </form>
     );
   }
@@ -192,33 +206,37 @@ function Corridas() {
     return (
       <tr key={corrida._id}>
         <td>{corrida._id}</td>
-        <td>{corrida.pontoChegada}</td>
         <td>{corrida.pontoPartida}</td>
+        <td>{corrida.pontoChegada}</td>
         <td>{corrida.distancia}</td>
         <td>{corrida.valor}</td>
         <td>
-          <button
-            type="button"
-            onClick={() => {
-              if (
-                window.confirm(
-                  "Confirmar a exclusão da linha " + corrida.pontoChegada + "?"
-                )
-              ) {
-                excluirCorrida(corrida._id);
-              }
-            }}
-          >
-            Excluir
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setCorrida(corrida);
-            }}
-          >
-            Editar
-          </button>
+          <div className="button-group">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => {
+                if (
+                  window.confirm(
+                    "Confirmar a exclusão da linha " + corrida.pontoChegada + "?"
+                  )
+                ) {
+                  excluirCorrida(corrida._id);
+                }
+              }}
+            >
+              Excluir
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                setCorrida(corrida);
+              }}
+            >
+              Editar
+            </button>
+          </div>
         </td>
       </tr>
     );
@@ -226,7 +244,7 @@ function Corridas() {
 
   function getTabela() {
     return (
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>ID</th>
@@ -245,13 +263,15 @@ function Corridas() {
   }
 
   return (
-    <div className="corridas" style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className="corridas">
       <h2>Corridas</h2>
-      <button type="button" onClick={novaCorrida}>
+      <button type="button" className="btn btn-primary" onClick={novaCorrida}>
         Nova Corrida
       </button>
+      <center>
       {getTabela()}
       {corrida && getFormulario()}
+      </center>
     </div>
   );
 }
