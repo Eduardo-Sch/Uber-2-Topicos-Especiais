@@ -20,7 +20,7 @@ const CorridaSchema = new Schema({
   distancia: {
     type: Number,
     min: 1,
-    max: 50,
+    max: 100,
     default: function() {
       return Math.floor(Math.random() * (50 - 1 + 1)) + 10;
     }
